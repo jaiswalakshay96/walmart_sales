@@ -1,0 +1,41 @@
+Method 1: Using SQL Query
+Open MySQL Workbench and connect to your database.
+
+Open a new SQL tab by clicking on the + button or File > New Query Tab.
+
+Write the SQL query to create a new table based on the existing table. You can use the following template:
+
+sql
+
+CREATE TABLE new_table_name AS SELECT * FROM existing_table_name;
+
+
+Replace new_table_name with the name you want for the new table, and existing_table_name with the name of the table you want to copy.
+
+Execute the query by clicking on the Execute button or pressing Ctrl + Enter.
+
+Method 2: Using the Table Data Export and Import
+Open MySQL Workbench and connect to your database.
+
+Export the table data:
+
+Navigate to the Server > Data Export option from the menu.
+Select the schema and the table you want to export.
+Choose the export method (e.g., dump to SQL file).
+Click on Start Export.
+Import the table data:
+
+Navigate to the Server > Data Import option from the menu.
+Select the import method (e.g., import from SQL file).
+Choose the file you exported in the previous step.
+Click on Start Import.
+Method 3: Using Table Copy Functionality
+Open MySQL Workbench and connect to your database.
+
+Locate the table you want to copy in the Navigator panel.
+
+Right-click on the table and select Copy Table.
+
+Enter the name for the new table and other required details.
+
+Click OK to create the copy.

@@ -1,0 +1,70 @@
+Renaming a database in MySQL is not as straightforward as renaming a table because MySQL doesn't provide a direct `RENAME DATABASE` statement. However, you can achieve this by creating a new database and moving all tables from the old database to the new one. Here are the steps to rename a database:
+
+### Method 1: Using SQL Queries
+
+1. **Create a New Database**:
+   ```sql
+   CREATE DATABASE new_database_name;
+   ```
+
+2. **Move All Tables**:
+   Generate SQL statements to move each table from the old database to the new one. You can use a series of `RENAME TABLE` statements for this:
+
+   ```sql
+   RENAME TABLE old_database_name.table1 TO new_database_name.table1,
+                old_database_name.table2 TO new_database_name.table2,
+                ... ;
+   ```
+
+3. **Drop the Old Database** (Optional):
+   Once you've confirmed that all data has been moved correctly, you can drop the old database:
+
+   ```sql
+   DROP DATABASE old_database_name;
+   ```
+
+### Method 2: Using MySQL Workbench
+
+1. **Export the Old Database**:
+   - Open MySQL Workbench and connect to your server.
+   - Navigate to `Server > Data Export`.
+   - Select the old database and choose `Export to Self-Contained File`.
+   - Click on `Start Export`.
+
+2. **Create the New Database**:
+   - Open a new SQL tab and create the new database using:
+     ```sql
+     CREATE DATABASE new_database_name;
+     ```
+
+3. **Import the Data into the New Database**:
+   - Navigate to `Server > Data Import`.
+   - Select `Import from Self-Contained File` and choose the file you exported earlier.
+   - Select the new database as the target schema.
+   - Click on `Start Import`.
+
+4. **Drop the Old Database** (Optional):
+   - Once you've confirmed that all data has been imported correctly, drop the old database using:
+     ```sql
+     DROP DATABASE old_database_name;
+     ```
+
+### Example
+
+Assume you have a database named `old_db` and you want to rename it to `new_db`.
+
+1. **Create the new database**:
+   ```sql
+   CREATE DATABASE new_db;
+   ```
+
+2. **Generate the `RENAME TABLE` statements** (example for a few tables):
+   ```sql
+   RENAME TABLE old_db.table1 TO new_db.table1,
+                old_db.table2 TO new_db.table2;
+   ```
+
+3. **Drop the old database** (after confirming all tables have been moved):
+   ```sql
+   DROP DATABASE old_db;
+   ```
